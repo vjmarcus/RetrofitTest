@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">RetrofitTest</string>
-    <string name="label_name">Имя:</string>
-    <string name="label_lastname">Фамилия:</string>
+    <string name="label_name">Имя:&#160;</string>
+    <string name="label_lastname">Фамилия:&#160;</string>
 </resources>
