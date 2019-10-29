@@ -36,8 +36,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
     @Override
     public void onBindViewHolder(@NonNull EmployeeViewHolder holder, int position) {
         Employee employee = employees.get(position);
-        holder.textViewName.setText(employee.getFName());
-        holder.textViewLastName.setText(employee.getLName());
+        String name = employee.getFName().substring(0, 1).toUpperCase() + employee.getFName().substring(1).toLowerCase();
+        String lastName = employee.getLName().substring(0, 1).toUpperCase() + employee.getLName().substring(1).toLowerCase();
+        holder.textViewName.setText(name);
+        holder.textViewLastName.setText(lastName);
     }
 
     @Override

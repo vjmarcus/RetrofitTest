@@ -7,5 +7,5 @@ import io.reactivex.Observable;
 
 public interface ApiService {
     @GET ("testTask.json")
-    Observable <EmployeeResponse> getEmployes();
+    Observable <EmployeeResponse> getEmployees();
 }

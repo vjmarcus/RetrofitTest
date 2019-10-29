@@ -3,10 +3,7 @@ package com.freshappbooks.retrofittest;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.widget.Toast;
-
 import com.freshappbooks.retrofittest.adapters.EmployeeAdapter;
 import com.freshappbooks.retrofittest.api.ApiFactory;
 import com.freshappbooks.retrofittest.api.ApiService;
@@ -17,8 +14,7 @@ import java.util.ArrayList;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import rx.schedulers.Schedulers;
-import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,20 +33,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         ApiFactory apiFactory = ApiFactory.getInstance();
         ApiService apiService = apiFactory.getApiService();
-        apiService.getEmployes()
+        apiService.getEmployees().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<EmployeeResponse>() {
                     @Override
                     public void accept(EmployeeResponse employeeResponse) throws Exception {
                         adapter.setEmployees(employeeResponse.getResponse());
                     }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Toast.makeText(MainActivity.this, "Ошибка получения данных = \n" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
                 });
-
     }
 
 }
