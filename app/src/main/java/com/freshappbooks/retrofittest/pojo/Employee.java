@@ -9,10 +9,10 @@ public class Employee {
 
     @SerializedName("f_name")
     @Expose
-    private String name;
+    private String fName;
     @SerializedName("l_name")
     @Expose
-    private String lastName;
+    private String lName;
     @SerializedName("birthday")
     @Expose
     private String birthday;
@@ -23,20 +23,20 @@ public class Employee {
     @Expose
     private List<Specialty> specialty = null;
 
-    public String getName() {
-        return name;
+    public String getFName() {
+        return fName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFName(String fName) {
+        this.fName = fName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLName() {
+        return lName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLName(String lName) {
+        this.lName = lName;
     }
 
     public String getBirthday() {
@@ -62,4 +62,5 @@ public class Employee {
     public void setSpecialty(List<Specialty> specialty) {
         this.specialty = specialty;
     }
+
 }

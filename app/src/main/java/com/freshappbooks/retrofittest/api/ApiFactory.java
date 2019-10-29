@@ -26,4 +26,7 @@ public class ApiFactory {  // Singleton
         }
         return apiFactory;
     }
+    public ApiService getApiService() {
+        return retrofit.create(ApiService.class);
+    }
 }
