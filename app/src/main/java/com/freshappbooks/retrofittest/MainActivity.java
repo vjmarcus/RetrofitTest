@@ -13,6 +13,7 @@ import com.freshappbooks.retrofittest.pojo.EmployeeResponse;
 import java.util.ArrayList;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private EmployeeAdapter adapter;
+    Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         ApiFactory apiFactory = ApiFactory.getInstance();
         ApiService apiService = apiFactory.getApiService();
-        apiService.getEmployees().subscribeOn(Schedulers.io())
+        disposable = apiService.getEmployees().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<EmployeeResponse>() {
                     @Override
@@ -43,4 +45,11 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (disposable != null) {
+            disposable.dispose();
+        }
+    }
 }
