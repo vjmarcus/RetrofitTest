@@ -11,10 +11,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class EmployeeListPresenter {
 
-    private EmployeeListActivity activity;
+    private EmployeesListView view;
 
-    public EmployeeListPresenter(EmployeeListActivity activity) {
-        this.activity = activity;
+    public EmployeeListPresenter(EmployeesListView view) {
+        this.view = view;
     }
 
     Disposable disposable;
@@ -26,7 +26,7 @@ public class EmployeeListPresenter {
                 .subscribe(new Consumer<EmployeeResponse>() {
                     @Override
                     public void accept(EmployeeResponse employeeResponse) throws Exception {
-                        activity.showData(employeeResponse.getResponse());
+                        view.showData(employeeResponse.getResponse());
                     }
                 });
     }

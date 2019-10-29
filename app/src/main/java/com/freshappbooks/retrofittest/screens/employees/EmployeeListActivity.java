@@ -20,7 +20,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class EmployeeListActivity extends AppCompatActivity {
+public class EmployeeListActivity extends AppCompatActivity implements EmployeesListView{
 
     private RecyclerView recyclerView;
     private EmployeeAdapter adapter;
@@ -32,6 +32,7 @@ public class EmployeeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         presenter = new EmployeeListPresenter(this);
         recyclerView = findViewById(R.id.recycler_view_employees);
         adapter = new EmployeeAdapter();
@@ -41,14 +42,17 @@ public class EmployeeListActivity extends AppCompatActivity {
         presenter.loadData();
     }
 
-    public void showData(List<Employee> employees) {
-        adapter.setEmployees(employees);
-    }
+
 
     @Override
     protected void onDestroy() {
         presenter.disposeDisposable();
         super.onDestroy();
 
+    }
+
+    @Override
+    public void showData(List<Employee> employees) {
+        adapter.setEmployees(employees);
     }
 }
