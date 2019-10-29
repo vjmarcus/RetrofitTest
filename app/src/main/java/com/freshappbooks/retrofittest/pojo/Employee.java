@@ -1,10 +1,12 @@
 package com.freshappbooks.retrofittest.pojo;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@Entity
 public class Employee {
 
     @SerializedName("f_name")
