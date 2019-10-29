@@ -1,6 +1,8 @@
 # RetrofitTest
 Simle app with Retrofit, JSON and RxJava
 
+Template: MVP
+
 Mission: Create list with employess: 
 http://gitlab.65apps.com/65gb/static/raw/master/testTask.json
 
